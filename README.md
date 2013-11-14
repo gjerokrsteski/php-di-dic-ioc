@@ -5,7 +5,8 @@ PHP DI DIC IOC
 
 
 Following topics are discussed within the source-code:
-------------------------------------------------------_
+------------------------------------------------------
+
 - understanding Dependency Injection design pattern
 - using Dependency Injection Container paradigm
 - understanding and using Inversion-Of-Control paradigm
