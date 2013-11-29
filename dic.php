@@ -1,9 +1,12 @@
 <?php
-class DependencyInjectionContainer
+
+// Dependency-Injection-Container uses closures...
+
+class DiC
 {
   protected $dependencies = array();
 
-  public function __set($identifier, $instance)
+  public function __set($identifier, Closure $instance)
   {
     $this->dependencies[$identifier] = $instance;
   }
@@ -13,6 +16,24 @@ class DependencyInjectionContainer
     return $this->dependencies[$identifier]($this);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class Mail
 {
@@ -25,25 +46,34 @@ class Mail
   }
 }
 
-$dic = new DependencyInjectionContainer();
+
+
+
+
+
+
+
+
+$dic = new Dic();
 
 $dic->mailer_class    = function () {
   return 'Mail';
 };
 $dic->mailer_username = function () {
-  return 'Bob';
+  return 'Berry';
 };
 $dic->mailer_email    = function () {
   return 'bob@gmx.de';
 };
 
-$dic->mailer = function (DependencyInjectionContainer $dic) {
+$dic->mailer = function ($dic) {
   return new $dic->mailer_class($dic->mailer_email, $dic->mailer_username);
 };
 
 
 
 print_r($dic->mailer);
+
 
 
 

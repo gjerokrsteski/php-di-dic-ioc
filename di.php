@@ -1,7 +1,7 @@
 <?php
+
 namespace Before;
 
-//Before: hard coupling :-(
 class Storage
 {
   public function store()
@@ -13,8 +13,9 @@ class Storage
 
 class User
 {
-  protected $_name;
+  protected $name;
 
+  //Before: hard coupling :-(,
   public function save()
   {
     $storage = new Storage();
@@ -24,9 +25,16 @@ class User
 }
 
 
+
+
+
+
+
+
+
+
 namespace After;
 
-//After: free coupling = Dependency-Injection = :-)
 interface Storage
 {
   public function store();
@@ -37,6 +45,7 @@ class XmlStorage implements Storage
   public function store()
   {
     // ...logic to store data to XML file.
+    print __CLASS__;
   }
   // ....
 }
@@ -46,20 +55,31 @@ class MySqlStorage implements Storage
   public function store()
   {
     // ...logic to store data to MySQL.
+    print __CLASS__;
   }
   // ....
 }
 
+
+
+
+
+
+
 class User
 {
-  protected $name = 'Bob';
+  protected $name = 'Berry';
 
+  //After: free coupling = Dependency-Injection = :-)
   public function save(Storage $storage)
   {
     $storage->store();
     // ....
   }
 }
+
+
+
 
 
 $user = new User();

@@ -227,7 +227,7 @@ class Appe
 }
 
 /**
- * Testing Dependency Injection of ClassOne
+ * Testing Dependency Injection of Appe
  */
 class Zoo
 {
@@ -240,11 +240,11 @@ class Zoo
 }
 
 
-//IoC::register('Animal', function(){return new Animal('Tarzan');});
+IoC::register('zoo2000', 'Zoo');
 
 var_dump(
 
-  IoC::resolve('Zoo')
+  IoC::resolve('zoo2000')
 
 );
 
